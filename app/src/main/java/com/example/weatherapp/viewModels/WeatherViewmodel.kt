@@ -21,7 +21,7 @@ class WeatherViewmodel: ViewModel() {
             try {
                 val result = repository.getWeather(city)
                 weather.value = result
-                errorLiveData.value = null
+                errorLiveData.value = null //Once an error occurred, the errorMessage was displayed every time a correct answer was received. So I fixed it
             }catch (e: Exception)
             {
                 errorLiveData.value = e.message
