@@ -11,7 +11,7 @@ class WeatherViewmodel: ViewModel() {
     val repository = WeatherRepository()
 
     val weather = MutableLiveData<MyData?>()
-    val errorLiveData  = MutableLiveData<String>()
+    val errorLiveData  = MutableLiveData<String?>()
     val loadingLivedata = MutableLiveData<Boolean>()
 
     fun getWeather(city: String)
@@ -21,6 +21,7 @@ class WeatherViewmodel: ViewModel() {
             try {
                 val result = repository.getWeather(city)
                 weather.value = result
+                errorLiveData.value = null
             }catch (e: Exception)
             {
                 errorLiveData.value = e.message
